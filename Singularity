@@ -29,11 +29,8 @@ export LD_LIBRARY_PATH=/opt/rh/devtoolset-7/root$rpmlibdir$rpmlibdir32:/opt/rh/d
 export pythonvers=3.6
 export PYTHONPATH=/opt/rh/devtoolset-7/root/usr/lib64/python$pythonvers/site-packages:/opt/rh/devtoolset-7/root/usr/lib/python$pythonvers/site-packages${PYTHONPATH:+:${PYTHONPATH}}
 
-gcc --version
-
 cd /
 mkdir -p tmpdir
-cd /tmpdir
 
 ############# OpenMPI 2.1.1 installation #############
 cd /tmpdir
@@ -44,6 +41,8 @@ cd openmpi-2.1.1
 ./configure --prefix=/usr/local/openmpi --disable-getpwuid --enable-orterun-prefix-by-default
 make -j4
 make install
+cd ..
+rm -rf openmpi-2.1.1
 export PATH=/usr/local/openmpi/bin:${PATH}
 export LD_LIBRARY_PATH=/usr/local/openmpi/lib:${LD_LIBRARY_PATH}
 ################################################
@@ -51,6 +50,7 @@ export LD_LIBRARY_PATH=/usr/local/openmpi/lib:${LD_LIBRARY_PATH}
 cd /tmpdir
 gcc -o hello_world_openMP.bin -fopenmp hello_world_openMP.c
 mpicc -o hello_world_MPI.bin hello_world_MPI.c
+################################################
 
 
 %environment
