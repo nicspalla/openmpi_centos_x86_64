@@ -31,6 +31,8 @@ export PYTHONPATH=/opt/rh/devtoolset-7/root/usr/lib64/python$pythonvers/site-pac
 
 cd /
 mkdir -p tmpdir
+mkdir -p scratch
+chmod 777 scratch
 
 ############# OpenMPI 2.1.1 installation #############
 cd /tmpdir
